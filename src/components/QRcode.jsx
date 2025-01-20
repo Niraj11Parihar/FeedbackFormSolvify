@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import QRCode from 'react-qr-code';
-import QRCodeLib from 'qrcode'; // Import the `qrcode` library to generate data URL
+import QRCodeLib from 'qrcode'; 
 
 const QRCodeComponent = () => {
   const url = "https://www.youtube.com/watch?v=UUeJjFB3fw8";
   const [qrCodeUrl, setQrCodeUrl] = useState('');
 
   useEffect(() => {
-    // Generate the QR code image URL using `qrcode` library
+    // generate url form Image
     QRCodeLib.toDataURL(url)
       .then(setQrCodeUrl)
       .catch((err) => console.error(err));
   }, [url]);
 
+  // process to download image 
   const handleDownload = () => {
     const a = document.createElement("a");
-    a.href = qrCodeUrl; // Use the generated QR code URL
-    a.download = "qrcode.png"; // Set download file name
+    a.href = qrCodeUrl; 
+    a.download = "qrcode.png"; 
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
